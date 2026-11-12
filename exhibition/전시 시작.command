@@ -1,7 +1,7 @@
 #!/bin/bash
 # 〈When Love Responds〉 전시 시작 — 더블클릭하면 크롬 키오스크(주소창·탭 없는 전체화면)로 갤러리가 열립니다.
 # 배포 주소가 바뀌면 아래 한 줄만 고치세요.
-GALLERY_URL="https://갤러리-배포-주소.vercel.app/?kiosk"   # ← Vercel 배포 후 실제 주소로 교체
+GALLERY_URL="https://when-love-responds.vercel.app/?kiosk"
 
 PROFILE="$HOME/.when-love-responds-chrome"   # 전시 전용 크롬 프로필 (평소 쓰는 크롬과 분리)
 
