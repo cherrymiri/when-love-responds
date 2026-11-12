@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>When Love Responds</title>
+  <meta name="description" content="여섯 가지 사랑이 각자의 방식으로 응답하는 인터랙티브 미디어아트 〈When Love Responds〉" />
+  <meta name="theme-color" content="#111113" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%225%22 fill=%22%23ece9e4%22/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="/works.js"></script>
+</head>
+<body>
+  <main class="gallery" id="gallery" aria-label="When Love Responds 전시 갤러리">
+    <header class="masthead">
+      <h1 class="title">When Love Responds</h1>
+      <p class="intro">여섯 가지 사랑이, 각자의 방식으로 응답합니다.<span class="intro-en">Choose the love that calls to you.</span></p>
+    </header>
+
+    <ul class="works" id="works" aria-label="작품 목록"></ul>
+
+    <button class="enter" id="enter" type="button" hidden>ENTER EXHIBITION</button>
+  </main>
+
+  <!-- 작품 뷰어 (openMode: frame) -->
+  <section class="viewer" id="viewer" aria-hidden="true">
+    <div class="viewer-veil" id="viewerVeil">
+      <p class="viewer-name" id="viewerName"></p>
+      <p class="viewer-sub" id="viewerSub"></p>
+    </div>
+    <button class="back" id="back" type="button">BACK TO GALLERY</button>
+  </section>
+
+  <script src="/app.js"></script>
+</body>
+</html>
