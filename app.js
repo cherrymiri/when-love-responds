@@ -29,7 +29,7 @@
             <img alt="${w.name} 오브제"
                  src="/assets/works/${w.image}-1400.webp"
                  srcset="/assets/works/${w.image}-720.webp 720w, /assets/works/${w.image}-1400.webp 1400w"
-                 sizes="(max-width: 420px) 88vw, (max-width: 820px) 46vw, 30vw"
+                 sizes="(max-width: 820px) 36vw, 30vw"
                  decoding="async" draggable="false" />
           </div>
         </div>
