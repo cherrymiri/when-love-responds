@@ -169,6 +169,7 @@
     frame.src = work.url;
     viewer.insertBefore(frame, veil);
 
+    viewer.dataset.back = work.back === 'top' ? 'top' : 'bottom';
     viewer.classList.add('is-open');
     viewer.setAttribute('aria-hidden', 'false');
     setFocus(null);
