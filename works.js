@@ -53,7 +53,7 @@ window.WLR_WORKS = [
   {
     id: 'pragma',
     name: 'PRAGMA',
-    subtitle: '오래된 사랑',
+    subtitle: '맞춰가는 사랑',
     line: '맞춰가며, 오래 지켜내는 사랑.',
     url: 'https://pragma-web-xi.vercel.app',
     image: 'pragma',
