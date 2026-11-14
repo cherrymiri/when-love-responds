@@ -90,8 +90,14 @@
   function reveal() {
     if (revealed) return;
     revealed = true;
-    requestAnimationFrame(() => document.documentElement.classList.add('is-ready'));
+    document.documentElement.classList.add('is-ready');
   }
+
+  // Safari 뒤로가기(페이지 캐시) 복원 시에도 갤러리가 보이도록
+  window.addEventListener('pageshow', (e) => {
+    document.documentElement.classList.add('is-ready');
+    if (e.persisted && current) close(true);
+  });
   setTimeout(reveal, 2500); // 느린 네트워크에서도 화면은 나타나도록
 
   let rT;
