@@ -79,5 +79,5 @@ window.WLR_WORKS = [
  */
 window.WLR_SETTINGS = {
   openMode: 'frame',
-  permissions: 'microphone; camera; fullscreen; autoplay; accelerometer; gyroscope; clipboard-write',
+  permissions: 'microphone; camera; autoplay; accelerometer; gyroscope; clipboard-write',
 };

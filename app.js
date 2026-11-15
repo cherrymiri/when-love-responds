@@ -162,7 +162,8 @@
     frame.title = `${work.name} — ${work.subtitle}`;
     frame.allow = (work.allow || SETTINGS.permissions || '').split(';')
       .map((s) => s.trim()).filter(Boolean).map((p) => `${p} *`).join('; ');
-    frame.setAttribute('allowfullscreen', '');
+    // 작품 자체의 전체화면 버튼은 막음 — 작품만 전체화면이 되면 BACK TO GALLERY가 가려지기 때문.
+    // 전체화면은 갤러리(ENTER EXHIBITION / 키오스크)가 담당하고, 작품을 오가도 유지됨.
     frame.addEventListener('load', () => {
       setTimeout(() => {
         frame && frame.classList.add('is-loaded');
