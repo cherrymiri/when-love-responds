@@ -262,8 +262,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   /* Safari: WebGL 작품 iframe이 버튼 위로 그려지는 문제 방지 — 버튼을 별도 레이어로 */
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
+  /* 모든 작품 공통 위치: 왼쪽 위 */
   left: clamp(14px, 1.6vw, 30px);
-  bottom: clamp(14px, 2.2vh, 30px);
+  top: clamp(14px, 2.2vh, 30px);
   font-size: 10.5px;
   letter-spacing: 0.26em;
   color: rgba(236, 233, 228, 0.5);
@@ -275,8 +276,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   transition: color 400ms var(--ease), background 400ms var(--ease);
 }
 .back:hover, .back:focus-visible { color: var(--ink); background: rgba(17, 17, 19, 0.72); outline: none; }
-/* Works whose own controls sit along the bottom edge ask for the button at the top. */
-.viewer[data-back="top"] .back { bottom: auto; top: clamp(14px, 2.2vh, 30px); }
 .back-arrow { display: none; }
 
 /* ───────────── Touch / small screens ───────────── */
@@ -327,8 +326,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
     width: 100%;
     height: calc(100% - var(--nav-h) - env(safe-area-inset-bottom, 0px));
   }
-  .back,
-  .viewer[data-back="top"] .back {
+  .back {
     top: calc(env(safe-area-inset-top, 0px) + 6px);
     bottom: auto;
     left: max(10px, env(safe-area-inset-left, 0px));
