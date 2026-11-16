@@ -10,9 +10,6 @@
   const list = document.getElementById('works');
   const enterBtn = document.getElementById('enter');
   const viewer = document.getElementById('viewer');
-  const veil = document.getElementById('viewerVeil');
-  const viewerName = document.getElementById('viewerName');
-  const viewerSub = document.getElementById('viewerSub');
   const backBtn = document.getElementById('back');
 
   const touchOnly = window.matchMedia('(hover: none)').matches;
@@ -154,9 +151,6 @@
       return;
     }
     current = work;
-    viewerName.textContent = work.name;
-    viewerSub.textContent = work.subtitle;
-    veil.classList.remove('is-hidden');
 
     frame = document.createElement('iframe');
     frame.title = `${work.name} — ${work.subtitle}`;
@@ -167,14 +161,13 @@
     frame.addEventListener('load', () => {
       setTimeout(() => {
         frame && frame.classList.add('is-loaded');
-        veil.classList.add('is-hidden');
         try { frame && frame.focus(); } catch (_) {}
       }, 350);
     }, { once: true });
     const f0 = frame;
-    setTimeout(() => { if (frame === f0) { f0.classList.add('is-loaded'); veil.classList.add('is-hidden'); } }, 9000);
+    setTimeout(() => { if (frame === f0) { f0.classList.add('is-loaded'); } }, 9000);
     frame.src = work.url;
-    viewer.insertBefore(frame, veil);
+    viewer.insertBefore(frame, backBtn);
 
     viewer.classList.add('is-open');
     viewer.setAttribute('aria-hidden', 'false');
