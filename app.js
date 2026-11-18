@@ -20,7 +20,7 @@
     const li = document.createElement('li');
     li.className = 'work';
     li.innerHTML = `
-      <a class="work-link" href="${w.url}" data-id="${w.id}" aria-label="${w.name} — ${w.subtitle}">
+      <div class="work-link" role="link" tabindex="0" data-id="${w.id}" aria-label="${w.name} — ${w.subtitle}">
         <div class="stage">
           <div class="object">
             <img alt="${w.name} 오브제"
@@ -35,7 +35,7 @@
           <p class="work-sub">${w.subtitle}</p>
           <p class="work-line">${w.line}</p>
         </div>
-      </a>`;
+      </div>`;
     list.appendChild(li);
     const link = li.querySelector('.work-link');
     const stage = li.querySelector('.stage');
@@ -137,10 +137,13 @@
   let current = null;
 
   items.forEach((it) => {
+    // 링크(href)를 쓰지 않으므로 어떤 경우에도 갤러리 밖으로 페이지가 넘어가지 않음
     it.link.addEventListener('click', (e) => {
-      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return; // 새 탭 열기는 그대로
       e.preventDefault();
-      open(it.work, true);
+      if (!current) open(it.work, true);
+    });
+    it.link.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (!current) open(it.work, true); }
     });
   });
 
@@ -154,6 +157,8 @@
 
     frame = document.createElement('iframe');
     frame.title = `${work.name} — ${work.subtitle}`;
+    // 작품이 갤러리 페이지 자체를 다른 주소로 바꾸지 못하게 잠금 (BACK TO GALLERY 항상 유지)
+    frame.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals allow-downloads allow-presentation');
     frame.allow = (work.allow || SETTINGS.permissions || '').split(';')
       .map((s) => s.trim()).filter(Boolean).map((p) => `${p} *`).join('; ');
     // 작품 자체의 전체화면 버튼은 막음 — 작품만 전체화면이 되면 BACK TO GALLERY가 가려지기 때문.
