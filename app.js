@@ -220,7 +220,10 @@
     // 키오스크(?kiosk)나 크롬 자체 전체화면이면 버튼을 숨기고, 그 외에는 항상 보여줌
     const browserFs = !realFullscreen() && isFullscreen();
     enterBtn.hidden = KIOSK || !fsSupported || touchOnly || browserFs;
-    enterBtn.textContent = realFullscreen() ? 'EXIT FULLSCREEN' : 'FULLSCREEN';
+    const on = realFullscreen();
+    enterBtn.classList.toggle('is-on', on);
+    enterBtn.setAttribute('aria-label', on ? '전체화면 끝내기' : '전체화면');
+    enterBtn.title = on ? '전체화면 끝내기' : '전체화면';
   }
 
   enterBtn.addEventListener('click', () => {
