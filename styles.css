@@ -190,15 +190,19 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 .enter {
   position: fixed;
-  right: clamp(20px, 2.4vw, 44px);
-  bottom: clamp(16px, 2.6vh, 36px);
-  font-size: 11px;
-  letter-spacing: 0.28em;
-  color: var(--ink-faint);
-  padding: 10px 2px;
-  transition: color 500ms var(--ease), opacity 600ms var(--ease);
+  z-index: 20;
+  right: clamp(10px, 1.4vw, 26px);
+  top: calc(env(safe-area-inset-top, 0px) + (clamp(38px, 4.4vh, 48px) - 28px) / 2);
+  padding: 7px 12px;
+  font-size: 10.5px;
+  line-height: 14px;
+  letter-spacing: 0.22em;
+  color: rgba(236, 233, 228, 0.66);
+  border-radius: 999px;
+  transform: translateZ(0);
+  transition: color 400ms var(--ease), background 400ms var(--ease), opacity 500ms var(--ease);
 }
-.enter:hover, .enter:focus-visible { color: var(--ink); outline: none; }
+.enter:hover, .enter:focus-visible { color: var(--ink); background: rgba(236, 233, 228, 0.06); outline: none; }
 .enter[hidden] { display: block; opacity: 0; pointer-events: none; }
 
 /* ───────────── Viewer ───────────── */

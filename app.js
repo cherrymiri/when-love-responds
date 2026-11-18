@@ -212,11 +212,23 @@
     return Math.abs(window.innerHeight - screen.height) < 2 && Math.abs(window.innerWidth - screen.width) < 2;
   }
 
+  function realFullscreen() {
+    return !!(document.fullscreenElement || document.webkitFullscreenElement);
+  }
+
   function syncEnter() {
-    enterBtn.hidden = KIOSK || !fsSupported || touchOnly || isFullscreen();
+    // 키오스크(?kiosk)나 크롬 자체 전체화면이면 버튼을 숨기고, 그 외에는 항상 보여줌
+    const browserFs = !realFullscreen() && isFullscreen();
+    enterBtn.hidden = KIOSK || !fsSupported || touchOnly || browserFs;
+    enterBtn.textContent = realFullscreen() ? 'EXIT FULLSCREEN' : 'FULLSCREEN';
   }
 
   enterBtn.addEventListener('click', () => {
+    if (realFullscreen()) {
+      const exit = document.exitFullscreen || document.webkitExitFullscreen;
+      if (exit) Promise.resolve(exit.call(document)).catch(() => {});
+      return;
+    }
     const el = document.documentElement;
     const req = el.requestFullscreen || el.webkitRequestFullscreen;
     if (req) Promise.resolve(req.call(el, { navigationUI: 'hide' })).catch(() => {});
