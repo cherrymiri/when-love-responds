@@ -69,6 +69,8 @@
     });
   }
 
+  // (이미지가 이미 캐시에 있으면 아래 루프 안에서 바로 reveal()이 불리므로 먼저 선언해야 함 — iPhone에서 멈추던 원인)
+  let revealed = false;
   let loaded = 0;
   items.forEach((it) => {
     const done = () => {
@@ -83,7 +85,6 @@
     }
   });
 
-  let revealed = false;
   function reveal() {
     if (revealed) return;
     revealed = true;
