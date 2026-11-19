@@ -140,12 +140,30 @@
     // 링크는 갤러리 안의 #작품 주소만 가리키므로 어떤 경우에도 갤러리 밖으로 넘어가지 않음 (iPhone에서도 확실히 눌리도록 <a> 사용)
     it.link.addEventListener('click', (e) => {
       e.preventDefault();
-      if (!current) open(it.work, true);
+      if (!current) safeOpen(it.work);
     });
+    // iPhone: 탭을 클릭 이벤트에만 맡기지 않고 손가락을 떼는 순간 바로 열기 (스크롤·끌기는 무시)
+    let t0 = null;
+    it.link.addEventListener('touchstart', (e) => {
+      const p = e.touches[0]; t0 = { x: p.clientX, y: p.clientY, t: Date.now() };
+    }, { passive: true });
+    it.link.addEventListener('touchend', (e) => {
+      if (!t0) return;
+      const p = e.changedTouches[0];
+      const moved = Math.hypot(p.clientX - t0.x, p.clientY - t0.y);
+      const quick = Date.now() - t0.t < 800;
+      t0 = null;
+      if (moved < 12 && quick) { e.preventDefault(); if (!current) safeOpen(it.work); }
+    }, { passive: false });
     it.link.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (!current) open(it.work, true); }
     });
   });
+
+  // 무슨 이유로든 갤러리 안에서 여는 데 실패하면, 작품 주소로 바로 이동해서라도 열리게
+  function safeOpen(work) {
+    try { open(work, true); } catch (err) { console.error(err); location.href = work.url; }
+  }
 
   function open(work, push) {
     if (MODE === 'link') {
