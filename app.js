@@ -20,7 +20,7 @@
     const li = document.createElement('li');
     li.className = 'work';
     li.innerHTML = `
-      <div class="work-link" role="link" tabindex="0" data-id="${w.id}" aria-label="${w.name} — ${w.subtitle}">
+      <a class="work-link" href="#${w.id}" data-id="${w.id}" aria-label="${w.name} — ${w.subtitle}">
         <div class="stage">
           <div class="object">
             <img alt="${w.name} 오브제"
@@ -35,7 +35,7 @@
           <p class="work-sub">${w.subtitle}</p>
           <p class="work-line">${w.line}</p>
         </div>
-      </div>`;
+      </a>`;
     list.appendChild(li);
     const link = li.querySelector('.work-link');
     const stage = li.querySelector('.stage');
@@ -137,7 +137,7 @@
   let current = null;
 
   items.forEach((it) => {
-    // 링크(href)를 쓰지 않으므로 어떤 경우에도 갤러리 밖으로 페이지가 넘어가지 않음
+    // 링크는 갤러리 안의 #작품 주소만 가리키므로 어떤 경우에도 갤러리 밖으로 넘어가지 않음 (iPhone에서도 확실히 눌리도록 <a> 사용)
     it.link.addEventListener('click', (e) => {
       e.preventDefault();
       if (!current) open(it.work, true);
