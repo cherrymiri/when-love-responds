@@ -166,6 +166,7 @@
   }
 
   function open(work, push) {
+    if (window.__dbg) window.__dbg('open ' + work.id + ' mode=' + MODE);
     if (MODE === 'link') {
       document.documentElement.classList.remove('is-ready');
       setTimeout(() => { location.href = work.url; }, 450);
